@@ -1,11 +1,12 @@
 "use client";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
+
+import { UserUiComponent } from "./RightSideBar";
 
 import { BiHomeCircle, BiBell, BiEnvelope, BiUser } from "react-icons/bi";
 import { HiOutlineHashtag } from "react-icons/hi";
 import { BsBookmark, BsTwitter } from "react-icons/bs";
-import { HiOutlineDotsCircleHorizontal } from "react-icons/hi";
-import Link from "next/link";
 
 const NAV_ITEMS = [
   {
@@ -44,7 +45,7 @@ const LeftSideBar = () => {
   const pathname = usePathname();
 
   return (
-    <div className="w-64 flex flex-col justify-between border-r-[1px] border-mainGray px-4">
+    <div className="w-64 flex flex-col justify-between px-4">
       <div>
         <Link href="/">
           <BsTwitter style={{ fontSize: "2rem" }} />
@@ -77,7 +78,14 @@ const LeftSideBar = () => {
           </button>
         </div>
       </div>
-      <div className="mb-4">User</div>
+      <div className="mb-4">
+        <UserUiComponent
+          name="Faruk Kandemir"
+          image="faruk"
+          userName="@farukkand09"
+          action={<></>}
+        />
+      </div>
     </div>
   );
 };

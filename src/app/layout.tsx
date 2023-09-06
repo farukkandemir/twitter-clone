@@ -22,7 +22,7 @@ export default function RootLayout({
       <body
         className={`${roboto.className} w-screen h-screen bg-[#15202B] text-white`}
       >
-        <main className="w-5/6 h-full max-w-7xl mx-auto flex justify-between gap-4 py-2">
+        <main className="w-5/6 h-full max-w-7xl mx-auto flex justify-between gap-8 py-2">
           <LeftSideBar />
           <div className="flex-1">{children}</div>
           <RightSideBar />

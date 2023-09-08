@@ -7,6 +7,7 @@ import { UserUiComponent } from "./RightSideBar";
 import { BiHomeCircle, BiBell, BiEnvelope, BiUser } from "react-icons/bi";
 import { HiOutlineHashtag } from "react-icons/hi";
 import { BsBookmark, BsTwitter } from "react-icons/bs";
+import { useState } from "react";
 
 const NAV_ITEMS = [
   {
@@ -42,10 +43,11 @@ const NAV_ITEMS = [
 ];
 
 const LeftSideBar = () => {
+  const [isTweetModalOpen, setIsTweetModalOpen] = useState<boolean>(false);
   const pathname = usePathname();
 
   return (
-    <div className="w-64 flex flex-col justify-between px-4">
+    <div className="w-64 flex flex-col justify-between px-4 h-screen pt-4 sticky top-0">
       <div>
         <Link href="/">
           <BsTwitter style={{ fontSize: "2rem" }} />
@@ -73,7 +75,10 @@ const LeftSideBar = () => {
           ))}
         </nav>
         <div>
-          <button className="bg-mainBlue text-white w-full rounded-full p-2 mt-8">
+          <button
+            className="bg-mainBlue text-white w-full rounded-full p-2 mt-8"
+            onClick={() => setIsTweetModalOpen(true)}
+          >
             Tweet
           </button>
         </div>

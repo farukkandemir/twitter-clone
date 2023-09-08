@@ -20,9 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${roboto.className} w-screen h-screen bg-[#15202B] text-white`}
+        className={`${roboto.className} w-screen h-screen bg-[#15202B] text-white overflow-y-auto overflow-x-hidden`}
       >
-        <main className="w-5/6 h-full max-w-7xl mx-auto flex justify-between gap-8 py-2">
+        <main className="w-5/6 max-w-7xl mx-auto flex justify-between gap-8 items-start">
           <LeftSideBar />
           <div className="flex-1">{children}</div>
           <RightSideBar />

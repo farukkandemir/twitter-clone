@@ -4,7 +4,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { BsThreeDots, BsBarChart } from "react-icons/bs";
 import { FaRegComment, FaRetweet } from "react-icons/fa";
 import { FiShare } from "react-icons/fi";
-import ComposeTweet from "@/components/modules/ComposeTweet";
+import ComposeTweet from "@/components/server-components/ComposeTweet";
 
 const TimeLineChangeButton = ({
   label,

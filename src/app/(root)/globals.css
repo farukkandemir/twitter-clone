@@ -6,6 +6,10 @@ section {
   padding: 0.5rem 1rem;
 }
 
+input {
+  outline: none;
+}
+
 /* ::-webkit-scrollbar {
   display: none;
 } */

@@ -4,14 +4,14 @@ import { BiImage } from "react-icons/bi";
 import { BsEmojiSunglasses } from "react-icons/bs";
 
 const ComposeTweet = () => {
-  const [text, setText] = useState<string>("");
+  // const [text, setText] = useState<string>("");
 
-  const handleTextChange = (e: any) => {
-    const textarea = e.target;
-    setText(textarea.value);
-    textarea.style.height = "auto";
-    textarea.style.height = `${textarea.scrollHeight}px`;
-  };
+  // const handleTextChange = (e: any) => {
+  //   const textarea = e.target;
+  //   setText(textarea.value);
+  //   textarea.style.height = "auto";
+  //   textarea.style.height = `${textarea.scrollHeight}px`;
+  // };
 
   return (
     <section className="flex gap-2 items-center">
@@ -22,9 +22,9 @@ const ComposeTweet = () => {
         <div className="flex flex-col gap-8">
           <textarea
             placeholder="What is happening?!"
-            value={text}
+            // value={text}
             className="w-full bg-inherit outline-none resize-none overflow-hidden whitespace-pre-wrap text-white/90"
-            onChange={handleTextChange}
+            // onChange={handleTextChange}
           />
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-2 text-xl text-mainBlue">
@@ -34,10 +34,9 @@ const ComposeTweet = () => {
             </div>
             <div>
               <button
-                className={`${
-                  !text && "bg-opacity-50"
-                } bg-mainBlue text-white text-sm w-full rounded-full px-4 py-1`}
-                disabled={!text}
+                className={`bg-mainBlue text-white text-sm w-full rounded-full px-4 py-1`}
+                // ${!text && "bg-opacity-50"}
+                // disabled={!text}
               >
                 Tweet
               </button>

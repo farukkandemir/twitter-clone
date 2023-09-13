@@ -1,8 +1,10 @@
 "use client";
 import { SignUpFormValues, SignUpSchema } from "@/lib/types";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
+import { useRouter } from "next/navigation";
 
 import { useForm } from "react-hook-form";
 
@@ -14,6 +16,7 @@ type FormField = {
 };
 
 const SignUp = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -51,6 +54,20 @@ const SignUp = () => {
       body: JSON.stringify(data),
     });
     const responseData = await response.json();
+
+    if (!responseData.success) {
+      return setError("email", {
+        type: "server",
+        message: responseData.error.message,
+      });
+    }
+
+    signIn("credentials", {
+      email: data.email,
+      password: data.password,
+      redirect: false,
+    });
+    router.push("/");
   };
 
   return (

@@ -22,28 +22,32 @@ export async function POST(request: Request) {
     });
   }
 
-  const { name, email, password } = result.data;
+  try {
+    const { name, email, password } = result.data;
 
-  const existingUser = await prisma.user.findUnique({
-    where: { email },
-  });
-
-  if (existingUser) {
-    return NextResponse.json({
-      success: false,
-      error: { message: "Email already exists" },
+    const existingUser = await prisma.user.findUnique({
+      where: { email },
     });
+
+    if (existingUser) {
+      return NextResponse.json({
+        success: false,
+        error: { message: "Email already exists" },
+      });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newUser = await prisma.user.create({
+      data: {
+        name,
+        email,
+        password: hashedPassword,
+      },
+    });
+
+    return NextResponse.json({ success: true, newUser });
+  } catch (error) {
+    return NextResponse.json({ error: { message: "Something went wrong" } });
   }
-
-  const hashedPassword = await bcrypt.hash(password, 10);
-
-  await prisma.user.create({
-    data: {
-      name,
-      email,
-      password: hashedPassword,
-    },
-  });
-
-  return NextResponse.json({ success: true });
 }

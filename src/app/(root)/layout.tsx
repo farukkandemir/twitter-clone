@@ -1,8 +1,8 @@
 import "./globals.css";
-import LeftSideBar from "@/components/ui/LeftSideBar";
+import LeftSideBar from "@/components/ui-components/LeftSideBar";
 import type { Metadata } from "next";
 import { Inter, Roboto } from "next/font/google";
-import RightSideBar from "@/components/ui/RightSideBar";
+import RightSideBar from "@/components/ui-components/RightSideBar";
 import AuthContext from "../context/AuthContext";
 
 const inter = Inter({ subsets: ["latin"] });

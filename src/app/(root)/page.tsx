@@ -3,7 +3,7 @@ import { BsThreeDots, BsBarChart } from "react-icons/bs";
 import { FaRegComment, FaRetweet } from "react-icons/fa";
 import { FiShare } from "react-icons/fi";
 import ComposeTweet from "@/components/server-components/ComposeTweet";
-import TimelineHeader from "@/components/ui/TimelineHeader";
+import TimelineHeader from "@/components/ui-components/TimelineHeader";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "@/lib/auth";

@@ -1,5 +1,5 @@
 "use client";
-import { SignUpFormValues, SignUpSchema } from "@/lib/types";
+import { FormField, SignUpFormValues, SignUpSchema } from "@/lib/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
@@ -7,13 +7,6 @@ import React from "react";
 import { useRouter } from "next/navigation";
 
 import { useForm } from "react-hook-form";
-
-type FormField = {
-  name: "name" | "email" | "password";
-  label: string;
-  type: string;
-  placeholder: string;
-};
 
 const SignUp = () => {
   const router = useRouter();
@@ -74,11 +67,16 @@ const SignUp = () => {
     <div className="h-full flex items-center justify-center">
       <div className="flex flex-col gap-2 p-4">
         <div className="bg-white p-8 rounded-lg shadow-lg w-96 text-black">
-          <h1 className="text-3xl font-semibold text-center mb-6">Sign Up</h1>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <h1 className="text-xl font-semibold text-center mb-6">
+            Create an account
+          </h1>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col gap-6"
+          >
             {formFields.map((field, index) => (
-              <div key={index} className="mb-4">
-                <label htmlFor={field.name} className="block text-gray-600">
+              <div key={index}>
+                <label htmlFor={field.name} className="block">
                   {field.label}
                 </label>
                 <input

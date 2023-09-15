@@ -1,31 +1,50 @@
-// import { FormField, SignUpFormValues } from "@/lib/types";
-// import React from "react";
-// import { FieldErrors, UseFormRegister } from "react-hook-form";
+import { InputFieldProps, SignUpFormValues } from "@/lib/types";
+import React from "react";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
 
-// type InputProps = {
-//   field: FormField;
-//   register: UseFormRegister<SignUpFormValues>;
-//   errors: FieldErrors<SignUpFormValues>;
-// };
+const InputField = ({
+  register,
+  error,
+  label,
+  type,
+  placeholder,
+}: InputFieldProps) => {
+  return (
+    <div>
+      {label && (
+        <label htmlFor={type} className="block">
+          {label}
+        </label>
+      )}
+      <div>
+        <input
+          {...register}
+          type={type}
+          id={type}
+          placeholder={placeholder}
+          className="
+              w-full 
+              py-1
+              px-2
+            bg-black  
+              border-2
+            border-neutral-800 
+              rounded-md
+              outline-none
+            text-white
+            text-sm
+            focus:border-mainBlue
+              focus:border-2
+              transition
+              placeholder:text-sm
+            disabled:bg-neutral-900
+              disabled:opacity-70
+              disabled:cursor-not-allowed "
+        />
+      </div>
+      {error && <p className="text-red-500 text-xs">{error}</p>}
+    </div>
+  );
+};
 
-// const InputField = ({ field, register, errors }: InputProps) => {
-//   return (
-//     <div>
-//       <label htmlFor={field.name} className="block">
-//         {field.label}
-//       </label>
-//       <input
-//         {...register(field.name)}
-//         type={field.type}
-//         id={field.name}
-//         className="w-full px-4 py-2 border rounded-md"
-//         placeholder={field.placeholder}
-//       />
-//       {errors[field.name] && (
-//         <p className="text-red-500">{errors[field.name]?.message}</p>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default InputField;
+export default InputField;

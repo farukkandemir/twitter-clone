@@ -20,7 +20,7 @@ const NavLink = ({
     <Link
       onClick={onClick}
       key={title}
-      href={href}
+      href={href || ""}
       className={`flex items-center gap-4  ${
         isHoverEffect && "hover:bg-white/20"
       } transition-all duration-300 ease rounded-full p-2  tracking-wide ${

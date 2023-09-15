@@ -18,9 +18,11 @@ export type SignUpFormValues = z.infer<typeof SignUpSchema>;
 export type SignInFormValues = z.infer<typeof baseSchema>;
 export const SignInSchema = baseSchema;
 
-export type FormField = {
-  name: "name" | "email" | "password";
-  label: string;
+export type InputFieldProps = {
   type: string;
+  label?: string;
+  register: any;
   placeholder: string;
+  //   error: FieldErrors<SignUpFormValues>;
+  error: string | undefined;
 };

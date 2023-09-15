@@ -1,45 +1,58 @@
 import React from "react";
+import InputField from "./Input";
+import { InputFieldProps } from "@/lib/types";
+import { BsTwitter } from "react-icons/bs";
+import Link from "next/link";
 
-const AuthModal = () => {
+const AuthModal = ({
+  type,
+  inputFields,
+  onSubmit,
+  isSubmitting,
+}: {
+  type: "login" | "signup";
+  inputFields: InputFieldProps[];
+  onSubmit: (data: any) => void;
+  isSubmitting: boolean;
+}) => {
+  const isSignInPage = type === "login";
+
   return (
-    <div className="bg-black p-4 rounded-lg shadow-lg w-full max-w-sm text-white">
-      <div className="flex flex-col gap-8">
-        <h1 className="">Log In</h1>
-        <form className="flex flex-col gap-4">
-          {[...Array(3)].map((_, index) => (
-            <div>
-              <input
-                key={index}
-                type="email"
-                id="email"
-                placeholder="Enter your email"
-                className="
-              w-full 
-              py-1
-              px-2
-            bg-black  
-              border-2
-            border-neutral-800 
-              rounded-md
-              outline-none
-            text-white
-            focus:border-mainBlue
-              focus:border-2
-              transition
-            disabled:bg-neutral-900
-              disabled:opacity-70
-              disabled:cursor-not-allowed "
-              />
-            </div>
+    <div className="flex items-center justify-center h-full">
+      <div className="bg-black p-8 rounded-lg shadow-lg w-96 text-white">
+        <div className="flex flex-col items-center justify-center gap-2">
+          <BsTwitter />
+          <h1 className="text-md font-semibold pb-6">
+            {isSignInPage ? "Welcome Back" : "Create An Account"}
+          </h1>
+        </div>
+        <form
+          className="flex flex-col gap-2"
+          onSubmit={onSubmit}
+          autoComplete="off"
+        >
+          {inputFields.map((inputField: InputFieldProps, index: number) => (
+            <InputField key={index} {...inputField} />
           ))}
-
-          <div className="flex flex-col gap-2 py-6">
-            <button className="w-full bg-white text-black py-1 rounded-full font-semibold">
-              Login
+          <div className="pt-4">
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full bg-white text-black font-semibold py-1 rounded-lg"
+            >
+              {isSignInPage ? "Log In" : "Sign Up"}
             </button>
-            <span className="self-center">footer</span>
           </div>
         </form>
+        <p className="pt-2 text-center text-sm text-neutral-400">
+          {isSignInPage ? "Don't have an account?" : "Already have an account?"}{" "}
+          <Link
+            href={isSignInPage ? "/sign-up" : "/sign-in"}
+            className="text-blue-500"
+          >
+            {isSignInPage ? "Sign Up" : "Sign In"}
+          </Link>
+        </p>
       </div>
     </div>
   );

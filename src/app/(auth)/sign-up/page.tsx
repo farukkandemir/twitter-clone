@@ -1,5 +1,5 @@
 "use client";
-import { FormField, SignUpFormValues, SignUpSchema } from "@/lib/types";
+import { InputFieldProps, SignUpFormValues, SignUpSchema } from "@/lib/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
@@ -7,6 +7,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 
 import { useForm } from "react-hook-form";
+import AuthModal from "@/components/shared/AuthModal";
 
 const SignUp = () => {
   const router = useRouter();
@@ -19,24 +20,24 @@ const SignUp = () => {
     resolver: zodResolver(SignUpSchema),
   });
 
-  const formFields: FormField[] = [
+  const inputFields: InputFieldProps[] = [
     {
-      name: "name",
-      label: "Name",
-      type: "text",
-      placeholder: "Your Name",
+      type: "name",
+      placeholder: "Name",
+      register: register("name"),
+      error: errors.name?.message,
     },
     {
-      name: "email",
-      label: "Email",
       type: "email",
-      placeholder: "you@example.com",
+      placeholder: "Email",
+      register: register("email"),
+      error: errors.email?.message,
     },
     {
-      name: "password",
-      label: "Password",
       type: "password",
-      placeholder: "********",
+      placeholder: "Password",
+      register: register("password"),
+      error: errors.password?.message,
     },
   ];
 
@@ -65,48 +66,12 @@ const SignUp = () => {
 
   return (
     <div className="h-full flex items-center justify-center">
-      <div className="flex flex-col gap-2 p-4">
-        <div className="bg-white p-8 rounded-lg shadow-lg w-96 text-black">
-          <h1 className="text-xl font-semibold text-center mb-6">
-            Create an account
-          </h1>
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col gap-6"
-          >
-            {formFields.map((field, index) => (
-              <div key={index}>
-                <label htmlFor={field.name} className="block">
-                  {field.label}
-                </label>
-                <input
-                  {...register(field.name)}
-                  type={field.type}
-                  id={field.name}
-                  className="w-full px-4 py-2 border rounded-md"
-                  placeholder={field.placeholder}
-                />
-                {errors[field.name] && (
-                  <p className="text-red-500">{errors[field.name]?.message}</p>
-                )}
-              </div>
-            ))}
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full bg-blue-500 text-white font-semibold px-4 py-2 rounded-md "
-            >
-              {isSubmitting ? "Loading..." : "Sign Up"}
-            </button>
-          </form>
-          <p className="mt-4 text-gray-600 text-center">
-            Already have an account?{" "}
-            <Link href="/sign-in" className="text-blue-500">
-              Log In
-            </Link>
-          </p>
-        </div>
-      </div>
+      <AuthModal
+        type="signup"
+        inputFields={inputFields}
+        onSubmit={handleSubmit(onSubmit)}
+        isSubmitting={isSubmitting}
+      />
     </div>
   );
 };

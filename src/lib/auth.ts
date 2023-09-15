@@ -23,7 +23,7 @@ export const authOptions: NextAuthOptions = {
         },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials.password) {
+        if (!credentials?.email || !credentials?.password) {
           return null;
         }
 
@@ -32,7 +32,7 @@ export const authOptions: NextAuthOptions = {
         });
 
         if (!existingUser) {
-          return null;
+          throw new Error("No user found");
         }
 
         const passwordMatch = await bcrypt.compare(

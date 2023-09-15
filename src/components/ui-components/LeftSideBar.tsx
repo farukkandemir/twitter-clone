@@ -74,7 +74,7 @@ const LeftSideBar = () => {
             <NavLink
               title="Log out"
               Icon={BiLogOut}
-              href=""
+              href={""}
               onClick={() => signOut()}
             />
           )}

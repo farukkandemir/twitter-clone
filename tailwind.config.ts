@@ -18,6 +18,7 @@ const config: Config = {
         mainBlue: "#1D9BF0",
         textGray: "#75828E",
         bgGray: "rgb(30, 39, 50)",
+        bgGrayOpac: "rgba(91, 112, 131, 0.4)",
       },
     },
   },

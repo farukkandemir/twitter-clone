@@ -61,7 +61,7 @@ const SignUp = () => {
       password: data.password,
       redirect: false,
     });
-    router.push("/");
+    router.push("/onboarding");
   };
 
   return (

@@ -58,44 +58,46 @@ const LeftSideBar = () => {
 
   return (
     <div className="w-64 flex flex-col justify-between px-4 h-screen pt-4 sticky top-0">
-      <div>
-        <NavLink href="/" Icon={BsTwitter} isHoverEffect={false} />
-        <nav className="flex flex-col gap-4 mt-8">
-          {NAV_ITEMS.map(({ title, Icon, href }) => (
-            <NavLink
-              key={title}
-              title={title}
-              Icon={Icon}
-              href={href}
-              pathname={pathname}
-            />
-          ))}
-          {status === "authenticated" && (
-            <NavLink
-              title="Log out"
-              Icon={BiLogOut}
-              href={""}
-              onClick={() => signOut()}
-            />
-          )}
-        </nav>
+      <>
         <div>
-          <button
-            className="bg-mainBlue text-white w-full rounded-full p-2 mt-8"
-            // onClick={() => setIsTweetModalOpen(true)}
-          >
-            Tweet
-          </button>
+          <NavLink href="/" Icon={BsTwitter} isHoverEffect={false} />
+          <nav className="flex flex-col gap-4 mt-8">
+            {NAV_ITEMS.map(({ title, Icon, href }) => (
+              <NavLink
+                key={title}
+                title={title}
+                Icon={Icon}
+                href={href}
+                pathname={pathname}
+              />
+            ))}
+            {status === "authenticated" && (
+              <NavLink
+                title="Log out"
+                Icon={BiLogOut}
+                href={""}
+                onClick={() => signOut()}
+              />
+            )}
+          </nav>
+          <div>
+            <button
+              className="bg-mainBlue text-white w-full rounded-full p-2 mt-8"
+              // onClick={() => setIsTweetModalOpen(true)}
+            >
+              Tweet
+            </button>
+          </div>
         </div>
-      </div>
-      <div className="mb-4">
-        <UserUiComponent
-          name="Faruk Kandemir"
-          image="faruk"
-          userName="@farukkand09"
-          action={<></>}
-        />
-      </div>
+        <div className="mb-4">
+          <UserUiComponent
+            name="Faruk Kandemir"
+            image="faruk"
+            userName="@farukkand09"
+            action={<></>}
+          />
+        </div>
+      </>
     </div>
   );
 };

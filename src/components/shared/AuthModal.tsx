@@ -38,9 +38,17 @@ const AuthModal = ({
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-white text-black font-semibold py-1 rounded-lg"
+              className={`w-full bg-white text-black font-semibold py-1 rounded-lg ${
+                isSubmitting && "animate-pulse"
+              }`}
             >
-              {isSignInPage ? "Log In" : "Sign Up"}
+              {isSignInPage
+                ? isSubmitting
+                  ? "Logging In..."
+                  : "Log In"
+                : isSubmitting
+                ? "Creating an Account..."
+                : "Sign Up"}
             </button>
           </div>
         </form>

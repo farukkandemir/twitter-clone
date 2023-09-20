@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import { Inter, Roboto } from "next/font/google";
 import RightSideBar from "@/components/ui-components/RightSideBar";
 import AuthContext from "../context/AuthContext";
+import { authOptions } from "@/lib/auth";
+import { getServerSession } from "next-auth";
 
 const inter = Inter({ subsets: ["latin"] });
 const roboto = Roboto({ subsets: ["latin"], weight: ["400", "500"] });

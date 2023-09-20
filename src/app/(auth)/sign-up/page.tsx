@@ -11,6 +11,7 @@ import AuthModal from "@/components/shared/AuthModal";
 
 const SignUp = () => {
   const router = useRouter();
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const {
     register,
     handleSubmit,

@@ -23,12 +23,12 @@ export const ourFileRouter = {
       // This code RUNS ON YOUR SERVER after upload
       if (!metadata.userEmail) throw new Error("No user email");
 
-      // await prisma.user.update({
-      //   where: { email: metadata.userEmail! },
-      //   data: {
-      //     profileImage: file.url,
-      //   },
-      // });
+      await prisma.user.update({
+        where: { email: metadata.userEmail! },
+        data: {
+          profileImage: file.url,
+        },
+      });
     }),
 } satisfies FileRouter;
 

@@ -1,23 +1,39 @@
-// "use server";
+"use server";
 
-// import { authOptions } from "@/lib/auth";
-// import prisma from "@/utils/db";
-// import { getServerSession } from "next-auth";
+import { useCurrentUser } from "@/hooks/useCurrentUser";
+import prisma from "@/utils/db";
+import { revalidatePath } from "next/cache";
 
-// export const saveUsernameToDb = async (data: FormData) => {
-//   const session = await getServerSession(authOptions);
+export const sendTweet = async (formData: FormData) => {
+  "use server";
 
-//   if (!session?.user?.email) throw new Error("No user email found");
-//   if (!data) throw new Error("No username found");
+  const user = await useCurrentUser();
 
-//   const userName = data.get("username") as string;
+  if (!user) {
+    return {
+      status: 401,
+      error: "Unauthorized",
+    };
+  }
 
-//   await prisma.user.update({
-//     where: {
-//       email: session?.user?.email,
-//     },
-//     data: {
-//       username: userName,
-//     },
-//   });
-// };
+  try {
+    const tweet = formData.get("tweet");
+    await prisma.tweet.create({
+      data: {
+        content: tweet as string,
+        user: {
+          connect: {
+            id: user.id,
+          },
+        },
+      },
+    });
+
+    revalidatePath("/");
+  } catch (error) {
+    return {
+      status: 500,
+      error,
+    };
+  }
+};

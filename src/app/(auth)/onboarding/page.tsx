@@ -3,11 +3,12 @@ import UploadButtonComponent from "@/components/shared/UploadButtonComponent";
 import { fetchTwitterApi } from "@/utils/helpers";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import React, { ReactElement, useState, useTransition } from "react";
+import React, { ReactElement, useEffect, useState, useTransition } from "react";
 import { BsTwitter, BsCheck2Circle } from "react-icons/bs";
 import { FaAt } from "react-icons/fa";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { VscError } from "react-icons/vsc";
+import ErrorField from "@/components/shared/ErrorField";
 
 const IconStatus = ({
   isChecking,
@@ -114,7 +115,7 @@ const SelectUsernameSection = (props: {
           success={success}
         />
       </div>
-      {error && <p className="text-xs text-red-500 mt-1">{error}</p>}
+      {error && <ErrorField error={error} />}
     </div>
   );
 };
@@ -130,6 +131,8 @@ const Onboarding = () => {
 
   const [isChecking, setIsChecking] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
+
+  useEffect(() => {}, []);
 
   const checkUsername = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsernameError("");

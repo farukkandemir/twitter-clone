@@ -4,7 +4,6 @@ import { UploadButton } from "@/utils/uploadthing";
 import toast from "react-hot-toast";
 import Image from "next/image";
 import { useState } from "react";
-import { MdDeleteForever } from "react-icons/md";
 
 export default function UploadButtonComponent({
   setProfilePicture,
@@ -22,16 +21,7 @@ export default function UploadButtonComponent({
         alt="placeholder"
         className="rounded-full"
       />
-      {/* {image && (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <MdDeleteForever
-              style={{
-                fontSize: "1.5rem",
-                color: "red",
-              }}
-            />
-          </div>
-        )} */}
+
       <div className="pt-4">
         <UploadButton
           endpoint="imageUploader"

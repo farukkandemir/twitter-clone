@@ -26,3 +26,29 @@ export type InputFieldProps = {
   //   error: FieldErrors<SignUpFormValues>;
   error: string | undefined;
 };
+
+export type User = {
+  id: string;
+  name: string;
+  username: string;
+  profileImage?: string;
+};
+
+export type TweetType = {
+  id: string;
+  content: string;
+  createdAt: Date;
+};
+
+export type TweetUserInfoType = {
+  username: string;
+  name: string;
+  profileImage?: string;
+};
+
+export type TweetAndUserInfo = {
+  tweets: TweetType[];
+  username: string;
+  name: string;
+  profileImage?: string;
+};

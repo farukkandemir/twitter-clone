@@ -1,6 +1,7 @@
 "use client";
 import { ReactElement } from "react";
 import { BsSearch } from "react-icons/bs";
+import UserInfoCard from "../shared/UserInfoCard";
 
 const SearhBar = () => (
   <div className="flex items-center gap-4 px-4 py-2 rounded-full bg-mainGray ">
@@ -29,43 +30,12 @@ const Trending = () => (
   </div>
 );
 
-export const UserUiComponent = ({
-  name,
-  image,
-  userName,
-  action,
-}: {
-  name: string;
-  image: string;
-  userName: string;
-  action: ReactElement;
-}) => {
-  return (
-    <div className="flex items-center justify-between">
-      <div className="flex items-center gap-2">
-        <div className="w-10 h-10 rounded-full bg-red-900"></div>
-        <div>
-          <p className="text-sm font-bold">Name</p>
-          <p className="text-xs text-textGray">Username</p>
-        </div>
-      </div>
-      <div>Action</div>
-    </div>
-  );
-};
-
 const RecommendedUsers = () => (
   <div className="w-full bg-bgGray p-4 rounded-lg flex flex-col gap-4">
     <span className="font-semibold text-lg tracking-wide">Who to follow</span>
 
     {[...Array(4)].map((_, index) => (
-      <UserUiComponent
-        key={index}
-        name="Faruk Kandemir"
-        image="far"
-        userName=""
-        action={<div></div>}
-      />
+      <UserInfoCard key={index} name="Faruk Kandemir" image="far" userName="" />
     ))}
   </div>
 );

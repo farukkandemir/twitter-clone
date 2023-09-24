@@ -28,7 +28,9 @@ export default async function RootLayout({
         <AuthContext>
           <main className="w-5/6 max-w-7xl mx-auto flex justify-between gap-8 items-start">
             <LeftSideBar />
-            <div className="flex-1">{children}</div>
+            <div className="flex-1 border-x-[1px] border-mainGray h-screen">
+              {children}
+            </div>
             <RightSideBar />
           </main>
         </AuthContext>

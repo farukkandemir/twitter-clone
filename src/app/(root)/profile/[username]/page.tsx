@@ -16,36 +16,64 @@ const Profile = async ({
   const { tweets, userInfo } = await getTweetAndUserInfo(user);
 
   return (
-    <div className=" flex flex-col">
+    // <div className=" flex flex-col">
+    //   <div className="px-2 pt-1">
+    //     <Header title="Faruk" subtitle="25 posts" backArrow />
+    //   </div>
+    //   <div className="relative flex flex-col gap-4">
+    //     <div>
+    //       <Image
+    //         src="/images/placeholder.png"
+    //         width="0"
+    //         height="0"
+    //         sizes="100vw"
+    //         className="w-full h-48"
+    //         alt="profile"
+    //       />
+    //     </div>
+    //     <div className="flex justify-between">
+    //       <div className="">
+    //         <UserImage imageUrl={user.profileImage} profilePage />
+    //       </div>
+    //       <button>Edit Profile</button>
+    //     </div>
+    //     <div>
+    //       <Header title="Faruk" subtitle="@faruk" />
+    //     </div>
+
+    //     <div>
+    //       <span>360 Following</span>
+    //       <span>20 Followers</span>
+    //     </div>
+    //   </div>
+    // </div>
+
+    <div>
       <div className="px-2 pt-1">
         <Header title="Faruk" subtitle="25 posts" backArrow />
       </div>
-      <div className="relative flex flex-col gap-4">
-        <div>
+
+      <div>
+        <div className="bg-neutral-700 h-44 relative">
           <Image
             src="/images/placeholder.png"
-            width="0"
-            height="0"
-            sizes="100vw"
-            className="w-full h-48"
+            fill
+            className="w-full"
             alt="profile"
           />
-        </div>
-        <div className="self-end">
-          <button>Edit Profile</button>
-        </div>
-        <div>
-          <Header title="Faruk" subtitle="@faruk" />
-        </div>
 
-        <div>
-          <span>360 Following</span>
-          <span>20 Followers</span>
+          <div className="absolute -bottom-16 left-4">
+            <UserImage imageUrl={user.profileImage} profilePage hasBorder />
+          </div>
         </div>
+      </div>
 
-        {/* <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2">
-          <UserImage imageUrl={user.profileImage} profilePage />
-        </div> */}
+      <div className="border-b-[1px] border-neutral-800 pb-4">
+        <div className="flex justify-end p-2">
+          <button className="bg-white text-black px-4 py-1 text-sm rounded-full font-semibold">
+            Edit
+          </button>
+        </div>
       </div>
     </div>
   );

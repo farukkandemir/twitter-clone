@@ -47,6 +47,7 @@ export type TweetUserInfoType = {
 };
 
 export type TweetAndUserInfo = {
+  id: string;
   tweets: TweetType[];
   username: string;
   name: string;

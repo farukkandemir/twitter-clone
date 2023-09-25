@@ -75,26 +75,25 @@ export const timePassed = (timestamp: Date | string | number) => {
   return "Just now";
 };
 
-export const getTweetAndUserInfo = async (user: User) => {
+export const getTweetAndUserInfoByUsername = async (username: string) => {
   const { tweets, ...userInfo } = (await prisma.user.findUnique({
     where: {
-      id: user?.id,
+      username: `@${username}`,
     },
-
     select: {
       tweets: {
         orderBy: {
           createdAt: "desc",
         },
-
         select: {
           id: true,
           content: true,
           createdAt: true,
         },
       },
-      username: true,
+      id: true,
       name: true,
+      username: true,
       profileImage: true,
     },
   })) as TweetAndUserInfo;

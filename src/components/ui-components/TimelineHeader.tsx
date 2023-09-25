@@ -1,32 +1,6 @@
 "use client";
 import React, { useState } from "react";
-
-const TimeLineChangeButton = ({
-  label,
-  selected,
-  onClick,
-}: {
-  label: string;
-  selected: boolean;
-  onClick: (label: string) => void;
-}) => {
-  return (
-    <button
-      className={`relative w-full text-sm py-4 hover:bg-mainGray ${
-        selected ? "text-white font-bold" : "text-textGray"
-      }`}
-      onClick={() => onClick(label)}
-    >
-      {label}
-      {selected && (
-        <div
-          className={`absolute bottom-0 left-0 right-0 mx-auto bg-mainBlue`}
-          style={{ width: `${label.length * 8}px`, height: "2px" }}
-        ></div>
-      )}
-    </button>
-  );
-};
+import ButtonGroups from "../shared/ButtonGroups";
 
 const TimelineHeader = () => {
   const [defaultTimeLine, setDefaultTimeLine] = useState<string>("following");
@@ -42,7 +16,7 @@ const TimelineHeader = () => {
       <div className="flex border-b-2 border-mainGray">
         {timeLineButtons.map(({ label }) => (
           <div key={label} className="flex-1">
-            <TimeLineChangeButton
+            <ButtonGroups
               label={label}
               selected={defaultTimeLine === label.toLowerCase()}
               onClick={changeTimeLine}

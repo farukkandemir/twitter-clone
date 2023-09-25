@@ -2,9 +2,9 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { BsThreeDots, BsBarChart } from "react-icons/bs";
 import { FaRegComment, FaRetweet } from "react-icons/fa";
 import { FiShare } from "react-icons/fi";
-import { TweetType, TweetUserInfoType } from "../server-components/Timeline";
 import UserImage from "./UserImage";
 import { timePassed } from "@/utils/helpers";
+import { TweetType, TweetUserInfoType } from "@/lib/types";
 
 const Tweet = ({
   tweet,

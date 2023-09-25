@@ -1,34 +1,40 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Twitter Clone
 
-## Getting Started
+![Twitter Clone Logo]
 
-First, run the development server:
+Welcome to the Twitter Clone project! This application is built using a modern stack of technologies to replicate the core features of Twitter. Below, we'll provide an overview of the technologies and libraries used in this project.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Technologies Used
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Next.js 13.4
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- [Next.js](https://nextjs.org/) is a popular React framework for building modern web applications.
+- Next.js version 13.4 is utilized to benefit from the most recent features and optimizations, including server and client components, server actions, shared layouts, nested routing, error handling, and more.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Prisma.io
 
-## Learn More
+- [Prisma](https://www.prisma.io/) is an open-source database toolkit that simplifies database access and management.
+- It's used in this project for interacting with the MongoDB database.
 
-To learn more about Next.js, take a look at the following resources:
+### MongoDB
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [MongoDB](https://www.mongodb.com/) is a NoSQL database used to store and manage user data, tweets, and other application data.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### NextAuth.js
 
-## Deploy on Vercel
+- [NextAuth.js](https://next-auth.js.org/) is an authentication library for Next.js applications.
+- It's used to handle user authentication and sessions in the Twitter Clone.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### React Hook Form
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [React Hook Form](https://react-hook-form.com/) is a library for managing form state and validation in React applications.
+- It's used for creating and handling forms in the application, such as tweet creation and user profile editing.
+
+### Zod
+
+- [Zod](https://zod.dev/) is a TypeScript-first schema validation library.
+- It's used for validating data and ensuring type safety throughout the application.
+
+### Additional React Libraries
+
+- The project utilizes various small React libraries to enhance the user interface and functionality.

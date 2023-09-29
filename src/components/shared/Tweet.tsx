@@ -5,6 +5,7 @@ import { FiShare } from "react-icons/fi";
 import UserImage from "./UserImage";
 import { timePassed } from "@/utils/helpers";
 import { TweetType, TweetUserInfoType } from "@/lib/types";
+import IconButton from "./IconButton";
 
 const Tweet = ({
   tweet,
@@ -13,6 +14,8 @@ const Tweet = ({
   tweet: TweetType;
   userInfo: TweetUserInfoType;
 }) => {
+  const { likes } = tweet;
+
   return (
     <article className="flex gap-2">
       {userInfo.profileImage && <UserImage imageUrl={userInfo.profileImage} />}
@@ -37,9 +40,9 @@ const Tweet = ({
           <div className="flex items-center justify-between text-lg text-textGray mt-4">
             <FaRegComment />
             <FaRetweet />
-            <AiOutlineHeart />
             <BsBarChart />
             <FiShare />
+            <IconButton tweetId={tweet.id} userId={userInfo.id} likes={likes} />
           </div>
         </div>
       </div>

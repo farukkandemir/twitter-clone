@@ -38,9 +38,11 @@ export type TweetType = {
   id: string;
   content: string;
   createdAt: Date;
+  likes: string[];
 };
 
 export type TweetUserInfoType = {
+  id: string;
   username: string;
   name: string;
   profileImage?: string;

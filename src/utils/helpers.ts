@@ -89,6 +89,7 @@ export const getTweetAndUserInfoByUsername = async (username: string) => {
           id: true,
           content: true,
           createdAt: true,
+          likes: true,
         },
       },
       id: true,

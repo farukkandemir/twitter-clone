@@ -6,12 +6,10 @@ import { AiFillHeart } from "react-icons/ai";
 const IconButton = ({
   tweetId,
   likes,
-  userId,
   currentUserId,
 }: {
   tweetId: string;
   likes: string[];
-  userId: string;
   currentUserId: string;
 }) => {
   const [optimisticLikes, addOrRemoveOptimisticLikes] = useOptimistic(

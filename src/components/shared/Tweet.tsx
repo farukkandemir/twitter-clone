@@ -44,7 +44,6 @@ const Tweet = async ({
             <FaRetweet />
             <IconButton
               tweetId={tweet.id}
-              userId={userInfo.id}
               likes={likes}
               currentUserId={user?.id}
             />

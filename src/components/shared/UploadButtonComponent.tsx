@@ -19,7 +19,10 @@ export default function UploadButtonComponent({
         width={200}
         height={200}
         alt="placeholder"
-        className="rounded-full"
+        style={{
+          borderRadius: "9999px",
+          objectFit: "cover",
+        }}
       />
 
       <div className="pt-4">

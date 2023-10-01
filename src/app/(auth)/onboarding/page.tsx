@@ -132,8 +132,6 @@ const Onboarding = () => {
   const [isChecking, setIsChecking] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
 
-  useEffect(() => {}, []);
-
   const checkUsername = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsernameError("");
     setUsername(e.target.value);

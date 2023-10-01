@@ -96,8 +96,14 @@ export const getTweetAndUserInfoByUsername = async (username: string) => {
       name: true,
       username: true,
       profileImage: true,
+      followers: true,
+      following: true,
     },
   })) as TweetAndUserInfo;
 
   return { tweets, userInfo };
+};
+
+export const splitUsername = (username: string) => {
+  return username.split("@")[1];
 };

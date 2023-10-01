@@ -85,3 +85,29 @@ export const addOrRemoveLike = async (tweetId: string, userId: string) => {
     };
   }
 };
+
+export const getRecommendedUsers = async (userId: string) => {
+  try {
+    return await prisma.user.findMany({
+      where: {
+        id: {
+          not: userId,
+        },
+      },
+      take: 4,
+      select: {
+        id: true,
+        name: true,
+        profileImage: true,
+        username: true,
+        followers: true,
+        following: true,
+      },
+    });
+  } catch (error) {
+    return {
+      status: 500,
+      error,
+    };
+  }
+};

@@ -1,15 +1,16 @@
-"use client";
 import React from "react";
 import { experimental_useFormStatus as useFormStatus } from "react-dom";
 
 const TweetButton = ({
   small,
   disabled,
+  onClick,
 }: {
   small?: boolean;
   disabled?: boolean;
+  onClick?: () => void;
 }) => {
-  const { pending, data } = useFormStatus();
+  const { pending } = useFormStatus();
 
   return (
     <div>
@@ -25,6 +26,7 @@ const TweetButton = ({
         `}
         type="submit"
         disabled={disabled}
+        onClick={onClick}
       >
         {pending ? "Tweeting..." : "Tweet"}
       </button>

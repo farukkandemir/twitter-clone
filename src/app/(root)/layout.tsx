@@ -4,8 +4,7 @@ import type { Metadata } from "next";
 import { Inter, Roboto } from "next/font/google";
 import RightSideBar from "@/components/ui-components/RightSideBar";
 import AuthContext from "../context/AuthContext";
-import { authOptions } from "@/lib/auth";
-import { getServerSession } from "next-auth";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 const roboto = Roboto({ subsets: ["latin"], weight: ["400", "500"] });
@@ -27,6 +26,8 @@ export default async function RootLayout({
       >
         <AuthContext>
           <main className="w-5/6 max-w-7xl mx-auto flex justify-between gap-8 items-start">
+            <Toaster position="top-center" />
+
             <LeftSideBar />
             <div className="flex-1 border-x-[1px] border-mainGray h-screen">
               {children}

@@ -14,6 +14,8 @@ import {
 import { HiOutlineHashtag } from "react-icons/hi";
 import { BsBookmark, BsTwitter } from "react-icons/bs";
 import TweetButton from "../shared/TweetButton";
+import useTweetModal from "@/hooks/useTweetModal";
+import { splitUsername } from "@/utils/helpers";
 
 const NavComponent = ({
   user,
@@ -23,6 +25,7 @@ const NavComponent = ({
   username: string;
 }) => {
   const pathname = usePathname();
+  const tweetModal = useTweetModal();
 
   const NAV_ITEMS = [
     {
@@ -53,7 +56,7 @@ const NavComponent = ({
     {
       title: "Profile",
       Icon: BiUser,
-      href: `profile/${username.split("@")[1]}`,
+      href: `profile/${splitUsername(username)}`,
     },
   ];
 
@@ -75,12 +78,12 @@ const NavComponent = ({
             title="Log out"
             Icon={BiLogOut}
             onClick={() => signOut()}
-            href=":"
+            href=""
           />
         )}
       </nav>
       <div className="mt-8">
-        <TweetButton />
+        <TweetButton onClick={() => tweetModal.onOpen} />
       </div>
     </div>
   );

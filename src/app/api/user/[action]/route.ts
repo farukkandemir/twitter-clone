@@ -35,7 +35,7 @@ const checkUsername = async ({ username }: { username: string }) => {
   try {
     const user = await prisma.user.findUnique({
       where: {
-        username,
+        username: `@${username}`,
       },
     });
     if (user) {

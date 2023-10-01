@@ -1,7 +1,8 @@
-"use client";
-import { ReactElement } from "react";
 import { BsSearch } from "react-icons/bs";
 import UserInfoCard from "../shared/UserInfoCard";
+import { getRecommendedUsers } from "@/server-actions/actions";
+import { useCurrentUser } from "@/hooks/useCurrentUser";
+import { TweetUserInfoType, User } from "@/lib/types";
 
 const SearhBar = () => (
   <div className="flex items-center gap-4 px-4 py-2 rounded-full bg-mainGray ">
@@ -30,15 +31,34 @@ const Trending = () => (
   </div>
 );
 
-const RecommendedUsers = () => (
-  <div className="w-full bg-bgGray p-4 rounded-lg flex flex-col gap-4">
-    <span className="font-semibold text-lg tracking-wide">Who to follow</span>
+const RecommendedUsers = async () => {
+  const user = (await useCurrentUser()) as User;
 
-    {[...Array(4)].map((_, index) => (
-      <UserInfoCard key={index} name="Faruk Kandemir" image="far" userName="" />
-    ))}
-  </div>
-);
+  const recommendedUsers = (await getRecommendedUsers(
+    user?.id
+  )) as TweetUserInfoType[];
+
+  return (
+    <div className="w-full bg-bgGray p-4 rounded-lg flex flex-col gap-4">
+      <span className="font-semibold text-lg tracking-wide">Who to follow</span>
+      {recommendedUsers.map((recommendedUser) => (
+        <UserInfoCard
+          key={recommendedUser.id}
+          currentUserId={user.id}
+          cardUserId={recommendedUser.id}
+          name={recommendedUser.name}
+          userName={recommendedUser.username}
+          imageUrl={recommendedUser.profileImage}
+          isFollowing={
+            !!recommendedUser.followers
+              ? recommendedUser.followers.includes(user.id)
+              : false
+          }
+        />
+      ))}
+    </div>
+  );
+};
 
 const RightSideBar = () => {
   return (

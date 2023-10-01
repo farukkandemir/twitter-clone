@@ -46,6 +46,8 @@ export type TweetUserInfoType = {
   username: string;
   name: string;
   profileImage?: string;
+  following?: string[];
+  followers?: string[];
 };
 
 export type TweetAndUserInfo = {

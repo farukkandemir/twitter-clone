@@ -4,16 +4,18 @@ import { FaRegComment, FaRetweet } from "react-icons/fa";
 import { FiShare } from "react-icons/fi";
 import UserImage from "./UserImage";
 import { timePassed } from "@/utils/helpers";
-import { TweetType, TweetUserInfoType } from "@/lib/types";
+import { TweetType, TweetUserInfoType, User } from "@/lib/types";
 import IconButton from "./IconButton";
+import { useCurrentUser } from "@/hooks/useCurrentUser";
 
-const Tweet = ({
+const Tweet = async ({
   tweet,
   userInfo,
 }: {
   tweet: TweetType;
   userInfo: TweetUserInfoType;
 }) => {
+  const user = (await useCurrentUser()) as User;
   const { likes } = tweet;
 
   return (
@@ -40,9 +42,14 @@ const Tweet = ({
           <div className="flex items-center justify-between text-lg text-textGray mt-4">
             <FaRegComment />
             <FaRetweet />
+            <IconButton
+              tweetId={tweet.id}
+              userId={userInfo.id}
+              likes={likes}
+              currentUserId={user?.id}
+            />
             <BsBarChart />
             <FiShare />
-            <IconButton tweetId={tweet.id} userId={userInfo.id} likes={likes} />
           </div>
         </div>
       </div>

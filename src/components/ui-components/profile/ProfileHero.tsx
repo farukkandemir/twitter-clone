@@ -1,10 +1,10 @@
 import Header from "@/components/shared/Header";
 import UserImage from "@/components/shared/UserImage";
-import { User } from "@/lib/types";
+import { TweetUserInfoType } from "@/lib/types";
 import Image from "next/image";
 import React from "react";
 
-const ProfileHero = ({ userInfo }: { userInfo: User }) => {
+const ProfileHero = ({ userInfo }: { userInfo: TweetUserInfoType }) => {
   return (
     <div>
       <div>
@@ -36,8 +36,22 @@ const ProfileHero = ({ userInfo }: { userInfo: User }) => {
         </div>
 
         <div className="flex items-center gap-2">
-          <Header title="20" subtitle="Followers" nextToEachOther small />
-          <Header title="20" subtitle="Following" nextToEachOther small />
+          <Header
+            title={
+              !!userInfo.followers?.length ? userInfo.followers?.length : 0
+            }
+            subtitle="Followers"
+            nextToEachOther
+            small
+          />
+          <Header
+            title={
+              !!userInfo.following?.length ? userInfo.following?.length : 0
+            }
+            subtitle="Following"
+            nextToEachOther
+            small
+          />
         </div>
       </div>
     </div>

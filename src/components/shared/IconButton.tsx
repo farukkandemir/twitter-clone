@@ -7,10 +7,12 @@ const IconButton = ({
   tweetId,
   likes,
   userId,
+  currentUserId,
 }: {
   tweetId: string;
   likes: string[];
   userId: string;
+  currentUserId: string;
 }) => {
   const [optimisticLikes, addOrRemoveOptimisticLikes] = useOptimistic(
     likes,
@@ -23,25 +25,23 @@ const IconButton = ({
   );
 
   return (
-    <>
+    <div className="flex gap-2">
       <button
         onClick={async () => {
-          addOrRemoveOptimisticLikes(userId);
-          await addOrRemoveLike(tweetId, userId);
+          addOrRemoveOptimisticLikes(currentUserId);
+          await addOrRemoveLike(tweetId, currentUserId);
         }}
       >
         <AiFillHeart
           style={{
-            color: optimisticLikes.includes(userId) ? "red" : "inherit",
+            color: optimisticLikes.includes(currentUserId) ? "red" : "inherit",
           }}
         />
       </button>
-      {!!optimisticLikes.length ? (
-        <span>{optimisticLikes.length}</span>
-      ) : (
-        <span>0</span>
+      {!!optimisticLikes.length && (
+        <span className="text-xs">{optimisticLikes.length}</span>
       )}
-    </>
+    </div>
   );
 };
 

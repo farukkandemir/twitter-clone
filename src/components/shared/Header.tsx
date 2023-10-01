@@ -8,7 +8,7 @@ const Header = ({
   small,
   nextToEachOther,
 }: {
-  title: string;
+  title: string | number;
   subtitle: string;
   backArrow?: boolean;
   small?: boolean;

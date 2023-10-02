@@ -1,8 +1,6 @@
 import ComposeTweet from "@/components/server-components/ComposeTweet";
 import Header from "@/components/shared/Header";
 import Tweet from "@/components/shared/Tweet";
-import TweetTextArea from "@/components/shared/TweetTextArea";
-import { SingleTweetType, TweetAndUserInfo } from "@/lib/types";
 import { getSingleTweet } from "@/utils/helpers";
 import React from "react";
 
@@ -37,7 +35,7 @@ const SingleTweetPage = async ({
       <div className="flex flex-col gap-4">
         {!!comments.length &&
           comments.map(({ user, ...otherProps }) => (
-            <Tweet tweet={otherProps} userInfo={user} />
+            <Tweet tweet={otherProps} userInfo={user} isComment={true} />
           ))}
       </div>
     </div>

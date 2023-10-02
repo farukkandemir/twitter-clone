@@ -7,10 +7,12 @@ const LikeButton = ({
   tweetId,
   likes,
   currentUserId,
+  isComment,
 }: {
   tweetId: string;
   likes: string[];
   currentUserId: string;
+  isComment?: boolean;
 }) => {
   const [optimisticLikes, addOrRemoveOptimisticLikes] = useOptimistic(
     likes,
@@ -27,7 +29,7 @@ const LikeButton = ({
       <button
         onClick={async () => {
           addOrRemoveOptimisticLikes(currentUserId);
-          await addOrRemoveLike(tweetId, currentUserId);
+          await addOrRemoveLike(tweetId, currentUserId, isComment);
         }}
       >
         <AiFillHeart

@@ -12,9 +12,11 @@ import Link from "next/link";
 const Tweet = async ({
   tweet,
   userInfo,
+  isComment,
 }: {
   tweet: TweetType | CommentType;
   userInfo: TweetUserInfoType;
+  isComment?: boolean;
 }) => {
   const user = (await useCurrentUser()) as User;
   const { likes } = tweet;
@@ -44,19 +46,20 @@ const Tweet = async ({
               <p>{tweet.content}</p>
             </div>
             {/* <div className="w-full h-72 rounded-lg bg-mainGray mt-2">Image</div> */}
-
-            <div className="flex items-center justify-between text-lg text-textGray mt-4">
-              <FaRegComment />
-              <FaRetweet />
-              <LikeButton
-                tweetId={tweet.id}
-                likes={likes}
-                currentUserId={user?.id}
-              />
-              <BsBarChart />
-              <FiShare />
-            </div>
           </Link>
+
+          <div className="flex items-center justify-between text-lg text-textGray mt-4">
+            <FaRegComment />
+            <FaRetweet />
+            <LikeButton
+              tweetId={tweet.id}
+              likes={likes}
+              currentUserId={user?.id}
+              isComment={isComment}
+            />
+            <BsBarChart />
+            <FiShare />
+          </div>
         </div>
       </div>
     </article>

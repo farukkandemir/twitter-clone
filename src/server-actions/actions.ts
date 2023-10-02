@@ -36,46 +36,97 @@ export const sendTweet = async (formData: FormData) => {
   }
 };
 
-export const addOrRemoveLike = async (tweetId: string, userId: string) => {
-  try {
-    const tweet = await prisma.tweet.findUnique({
-      where: {
-        id: tweetId,
-      },
-      select: {
-        likes: true,
-      },
-    });
+const likeTweet = async (tweetId: string, userId: string) => {
+  const tweet = await prisma.tweet.findUnique({
+    where: {
+      id: tweetId,
+    },
+    select: {
+      likes: true,
+    },
+  });
 
-    if (!tweet) {
-      return {
-        status: 404,
-        error: "Tweet not found",
-      };
-    }
+  if (!tweet) {
+    return {
+      status: 404,
+      error: "Tweet not found",
+    };
+  }
 
-    const isLiked = tweet.likes.find((like) => like === userId);
+  const isLiked = tweet.likes.find((like) => like === userId);
 
-    if (isLiked) {
-      return await prisma.tweet.update({
-        where: {
-          id: tweetId,
-        },
-        data: {
-          likes: [...tweet.likes.filter((like) => like !== userId)],
-        },
-      });
-    }
-
-    await prisma.tweet.update({
+  if (isLiked) {
+    return await prisma.tweet.update({
       where: {
         id: tweetId,
       },
       data: {
-        likes: [...tweet.likes, userId],
+        likes: [...tweet.likes.filter((like) => like !== userId)],
       },
     });
+  }
 
+  return await prisma.tweet.update({
+    where: {
+      id: tweetId,
+    },
+    data: {
+      likes: [...tweet.likes, userId],
+    },
+  });
+};
+
+const likeComment = async (tweetId: string, userId: string) => {
+  const tweet = await prisma.comment.findUnique({
+    where: {
+      id: tweetId,
+    },
+    select: {
+      likes: true,
+    },
+  });
+
+  if (!tweet) {
+    return {
+      status: 404,
+      error: "Tweet not found",
+    };
+  }
+
+  const isLiked = tweet.likes.find((like) => like === userId);
+
+  if (isLiked) {
+    return await prisma.comment.update({
+      where: {
+        id: tweetId,
+      },
+      data: {
+        likes: [...tweet.likes.filter((like) => like !== userId)],
+      },
+    });
+  }
+
+  return await prisma.comment.update({
+    where: {
+      id: tweetId,
+    },
+    data: {
+      likes: [...tweet.likes, userId],
+    },
+  });
+};
+
+export const addOrRemoveLike = async (
+  tweetId: string,
+  userId: string,
+  isComment?: boolean
+) => {
+  try {
+    if (isComment) {
+      await likeComment(tweetId, userId);
+      return revalidatePath(`/`);
+    }
+    await likeTweet(tweetId, userId);
     return revalidatePath("/");
   } catch (error) {
     revalidatePath("/");
@@ -136,7 +187,7 @@ export const sendReply = async (
       },
     });
 
-    return revalidatePath(`/profile`);
+    return revalidatePath(`/`);
   } catch (error) {
     return {
       status: 500,

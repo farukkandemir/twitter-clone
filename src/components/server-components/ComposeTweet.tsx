@@ -3,7 +3,13 @@ import UserImage from "../shared/UserImage";
 import { User } from "@/lib/types";
 import TweetTextArea from "../shared/TweetTextArea";
 
-const ComposeTweet = async () => {
+const ComposeTweet = async ({
+  isReply,
+  tweetId,
+}: {
+  isReply?: boolean;
+  tweetId?: string;
+}) => {
   const user = (await useCurrentUser()) as User;
 
   return (
@@ -12,7 +18,7 @@ const ComposeTweet = async () => {
         <UserImage imageUrl={user.profileImage} />
       </div>
       <div className="flex-1 pt-2">
-        <TweetTextArea />
+        <TweetTextArea isReply={isReply} tweetId={tweetId} userId={user.id} />
       </div>
     </section>
   );

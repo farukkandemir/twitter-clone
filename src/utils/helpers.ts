@@ -1,4 +1,4 @@
-import { TweetAndUserInfo, User } from "@/lib/types";
+import { SingleTweetType, TweetAndUserInfo, User } from "@/lib/types";
 import prisma from "./db";
 
 export const fetchTwitterApi = async ({
@@ -106,4 +106,44 @@ export const getTweetAndUserInfoByUsername = async (username: string) => {
 
 export const splitUsername = (username: string) => {
   return username.split("@")[1];
+};
+
+export const getSingleTweet = async (tweetId: string) => {
+  const tweet = await prisma.tweet.findUnique({
+    where: {
+      id: tweetId,
+    },
+    select: {
+      id: true,
+      content: true,
+      createdAt: true,
+      likes: true,
+      comments: {
+        include: {
+          user: {
+            select: {
+              id: true,
+              name: true,
+              username: true,
+              profileImage: true,
+            },
+          },
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+      },
+
+      user: {
+        select: {
+          id: true,
+          name: true,
+          username: true,
+          profileImage: true,
+        },
+      },
+    },
+  });
+
+  return tweet as SingleTweetType;
 };

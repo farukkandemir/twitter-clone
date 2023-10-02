@@ -111,3 +111,36 @@ export const getRecommendedUsers = async (userId: string) => {
     };
   }
 };
+
+export const sendReply = async (
+  formData: FormData,
+  tweetId: string,
+  userId: string
+) => {
+  const replyContent = formData.get("reply");
+
+  try {
+    await prisma.comment.create({
+      data: {
+        content: replyContent as string,
+        tweet: {
+          connect: {
+            id: tweetId,
+          },
+        },
+        user: {
+          connect: {
+            id: userId,
+          },
+        },
+      },
+    });
+
+    return revalidatePath(`/profile`);
+  } catch (error) {
+    return {
+      status: 500,
+      error,
+    };
+  }
+};

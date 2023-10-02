@@ -3,7 +3,7 @@ import { addOrRemoveLike } from "@/server-actions/actions";
 import React, { experimental_useOptimistic as useOptimistic } from "react";
 import { AiFillHeart } from "react-icons/ai";
 
-const IconButton = ({
+const LikeButton = ({
   tweetId,
   likes,
   currentUserId,
@@ -43,4 +43,4 @@ const IconButton = ({
   );
 };
 
-export default IconButton;
+export default LikeButton;

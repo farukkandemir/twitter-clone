@@ -77,7 +77,11 @@ const NavComponent = ({
           <NavLink
             title="Log out"
             Icon={BiLogOut}
-            onClick={() => signOut()}
+            onClick={() =>
+              signOut({
+                callbackUrl: "/sign-in",
+              })
+            }
             href=""
           />
         )}

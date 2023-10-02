@@ -4,10 +4,19 @@ import { AiOutlineGif } from "react-icons/ai";
 import { BiImage } from "react-icons/bi";
 import { BsEmojiSunglasses } from "react-icons/bs";
 import TweetButton from "../shared/TweetButton";
-import { sendTweet } from "@/server-actions/actions";
+import { sendReply, sendTweet } from "@/server-actions/actions";
 import CircleProgressBar from "./CircleProgressBar";
+import toast from "react-hot-toast";
 
-const TweetTextArea = () => {
+const TweetTextArea = ({
+  isReply,
+  tweetId,
+  userId,
+}: {
+  isReply?: boolean;
+  tweetId?: string;
+  userId?: string;
+}) => {
   const [textLength, setTextLength] = useState<number>(0);
   const ref = useRef<HTMLFormElement>(null);
 
@@ -25,12 +34,23 @@ const TweetTextArea = () => {
         action={async (formData) => {
           ref.current?.reset();
           setTextLength(0);
-          await sendTweet(formData);
+          if (!isReply) {
+            return await sendTweet(formData);
+          }
+          if (!tweetId) {
+            return toast.error("Something went wrong, please try again later");
+          }
+          if (!userId) {
+            return toast.error("Something went wrong, please try again later");
+          }
+
+          return await sendReply(formData, tweetId, userId);
+          //// send a reply
         }}
       >
         <textarea
-          placeholder="What is happening?!"
-          name="tweet"
+          placeholder={isReply ? "Tweet your reply" : "What's happening?"}
+          name={isReply ? "reply" : "tweet"}
           className={`w-full px-2 bg-inherit outline-none resize-none overflow-hidden whitespace-pre-wrap text-sm 
           ${textLength > 140 ? "text-red-500" : "text-white/90"}
           `}

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 
@@ -16,7 +17,11 @@ const Header = ({
 }) => {
   return (
     <div className="flex items-center gap-6">
-      {backArrow && <AiOutlineArrowLeft className="text-lg " />}
+      {backArrow && (
+        <Link href="/">
+          <AiOutlineArrowLeft className="text-lg " />
+        </Link>
+      )}
       <div
         className={`
       flex 

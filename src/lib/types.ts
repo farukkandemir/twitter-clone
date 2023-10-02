@@ -57,3 +57,18 @@ export type TweetAndUserInfo = {
   name: string;
   profileImage?: string;
 };
+
+export type CommentType = {
+  id: string;
+  content: string;
+  createdAt: Date;
+  tweetId: string;
+  userId: string;
+  user: User;
+  likes: string[];
+};
+
+export type SingleTweetType = TweetType & {
+  user: User;
+  comments: CommentType[];
+};

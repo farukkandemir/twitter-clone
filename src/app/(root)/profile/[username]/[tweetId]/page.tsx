@@ -36,7 +36,7 @@ const SingleTweetPage = async ({
         {!!comments.length &&
           comments.map(({ user, ...otherProps }) => (
             <Tweet
-              key={user.id}
+              key={otherProps.id}
               tweet={otherProps}
               userInfo={user}
               isComment={true}

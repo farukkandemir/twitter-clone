@@ -35,12 +35,9 @@ const SingleTweetPage = async ({
       <div className="flex flex-col gap-4">
         {!!comments.length &&
           comments.map(({ user, ...otherProps }) => (
-            <Tweet
-              key={otherProps.id}
-              tweet={otherProps}
-              userInfo={user}
-              isComment={true}
-            />
+            <div key={otherProps.id}>
+              <Tweet tweet={otherProps} userInfo={user} isComment={true} />
+            </div>
           ))}
       </div>
     </div>

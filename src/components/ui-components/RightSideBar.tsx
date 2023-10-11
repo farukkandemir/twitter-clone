@@ -21,7 +21,7 @@ const Trending = () => (
         What`s happening
       </span>
       {[...Array(5)].map((_, index) => (
-        <div className="flex flex-col gap-1" key={index}>
+        <div key={index} className="flex flex-col gap-1">
           <span className="text-xs text-textGray">Category</span>
           <p className="text-sm font-bold">Name</p>
           <span className="text-xs text-textGray">25K Tweet</span>

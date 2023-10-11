@@ -34,13 +34,14 @@ const TweetTextArea = ({
         action={async (formData) => {
           ref.current?.reset();
           setTextLength(0);
-          if (!isReply) {
-            return await sendTweet(formData);
-          }
-          if (!tweetId) {
+          if (!userId) {
             return toast.error("Something went wrong, please try again later");
           }
-          if (!userId) {
+
+          if (!isReply) {
+            return await sendTweet(formData, userId);
+          }
+          if (!tweetId) {
             return toast.error("Something went wrong, please try again later");
           }
 

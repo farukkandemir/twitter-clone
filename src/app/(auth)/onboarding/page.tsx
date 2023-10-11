@@ -178,6 +178,7 @@ const Onboarding = () => {
 
   const onboardingFlow = [
     <OnboardingModal
+      key={`step-1`}
       title="Pick a profile picture"
       subtitle="Have a favoruite selfie? Upload it now!"
       buttonLabel={profilePicture ? "Continue" : "Skip"}
@@ -188,6 +189,7 @@ const Onboarding = () => {
       }
     />,
     <OnboardingModal
+      key={`step-2`}
       title="What should we call you?"
       subtitle="Your @username is your unique.You can always change it later."
       buttonLabel={isAccountLoading ? "Creating Username" : "Create Username"}

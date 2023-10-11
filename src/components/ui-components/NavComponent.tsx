@@ -14,7 +14,6 @@ import {
 import { HiOutlineHashtag } from "react-icons/hi";
 import { BsBookmark, BsTwitter } from "react-icons/bs";
 import TweetButton from "../shared/TweetButton";
-import useTweetModal from "@/hooks/useTweetModal";
 import { splitUsername } from "@/utils/helpers";
 
 const NavComponent = ({
@@ -25,7 +24,6 @@ const NavComponent = ({
   username: string;
 }) => {
   const pathname = usePathname();
-  const tweetModal = useTweetModal();
 
   const NAV_ITEMS = [
     {
@@ -87,7 +85,7 @@ const NavComponent = ({
         )}
       </nav>
       <div className="mt-8">
-        <TweetButton onClick={() => tweetModal.onOpen} />
+        <TweetButton />
       </div>
     </div>
   );

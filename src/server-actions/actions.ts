@@ -4,10 +4,8 @@ import { useCurrentUser } from "@/hooks/useCurrentUser";
 import prisma from "@/utils/db";
 import { revalidatePath } from "next/cache";
 
-export const sendTweet = async (formData: FormData) => {
-  const user = await useCurrentUser();
-
-  if (!user) {
+export const sendTweet = async (formData: FormData, userId: string) => {
+  if (!userId) {
     return {
       status: 401,
       error: "Unauthorized",
@@ -21,7 +19,7 @@ export const sendTweet = async (formData: FormData) => {
         content: tweet as string,
         user: {
           connect: {
-            id: user.id,
+            id: userId,
           },
         },
       },

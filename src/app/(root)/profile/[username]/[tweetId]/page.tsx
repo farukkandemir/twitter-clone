@@ -34,9 +34,8 @@ const SingleTweetPage = async ({
 
       <div className="flex flex-col gap-4">
         {!!comments.length &&
-          comments.map(({ user, ...otherProps }) => (
-            //eslint-disable-next-line
-            <div key={otherProps.id}>
+          comments.map(({ user, ...otherProps }, index) => (
+            <div key={`tweets-${index}`}>
               <Tweet tweet={otherProps} userInfo={user} isComment={true} />
             </div>
           ))}
